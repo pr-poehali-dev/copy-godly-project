@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 15 15% 5%;
+    --foreground: 0 0% 95%;
 
-    --neon-green: #00ff41;
-    --neon-cyan: #00ffff;
-    --neon-purple: #ff00ff;
-    --cyber-dark: #0a0a0a;
-    --cyber-darker: #050505;
+    --neon-red: #ff0040;
+    --neon-crimson: #dc143c;
+    --neon-burgundy: #800020;
+    --dark-red: #1a0005;
+    --darker-red: #0f0003;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 15 15% 5%;
+    --card-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 15 20% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 25% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 0 25% 15%;
+    --input: 0 25% 15%;
+    --ring: 0 80% 70%;
 
     --radius: 0.5rem;
   }
@@ -38,24 +38,24 @@
   }
 
   body {
-    @apply bg-cyber-darker text-foreground font-mono;
+    @apply bg-darker-red text-foreground font-mono;
     background:
       radial-gradient(
         circle at 20% 50%,
-        rgba(0, 255, 65, 0.1) 0%,
+        rgba(255, 0, 64, 0.1) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 80% 20%,
-        rgba(255, 0, 255, 0.1) 0%,
+        rgba(220, 20, 60, 0.1) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 40% 80%,
-        rgba(0, 255, 255, 0.1) 0%,
+        rgba(128, 0, 32, 0.1) 0%,
         transparent 50%
       ),
-      linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+      linear-gradient(180deg, #1a0005 0%, #0f0003 100%);
     min-height: 100vh;
   }
 }
@@ -86,15 +86,15 @@
   0%,
   100% {
     box-shadow:
-      0 0 5px var(--neon-green),
-      0 0 10px var(--neon-green),
-      0 0 15px var(--neon-green);
+      0 0 5px var(--neon-red),
+      0 0 10px var(--neon-red),
+      0 0 15px var(--neon-red);
   }
   50% {
     box-shadow:
-      0 0 10px var(--neon-green),
-      0 0 20px var(--neon-green),
-      0 0 30px var(--neon-green);
+      0 0 10px var(--neon-red),
+      0 0 20px var(--neon-red),
+      0 0 30px var(--neon-red);
   }
 }
 
@@ -119,19 +119,19 @@
 }
 
 /* Utility Classes */
-.neon-green {
-  color: var(--neon-green);
-  text-shadow: 0 0 10px var(--neon-green);
+.neon-red {
+  color: var(--neon-red);
+  text-shadow: 0 0 10px var(--neon-red);
 }
 
-.neon-cyan {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 10px var(--neon-cyan);
+.neon-crimson {
+  color: var(--neon-crimson);
+  text-shadow: 0 0 10px var(--neon-crimson);
 }
 
-.neon-purple {
-  color: var(--neon-purple);
-  text-shadow: 0 0 10px var(--neon-purple);
+.neon-burgundy {
+  color: var(--neon-burgundy);
+  text-shadow: 0 0 10px var(--neon-burgundy);
 }
 
 .glitch {
@@ -139,8 +139,8 @@
 }
 
 .neon-border {
-  border: 1px solid var(--neon-green);
-  box-shadow: 0 0 10px var(--neon-green);
+  border: 1px solid var(--neon-red);
+  box-shadow: 0 0 10px var(--neon-red);
 }
 
 .neon-pulse {
@@ -162,7 +162,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--neon-cyan),
+    var(--neon-crimson),
     transparent
   );
   animation: scan-lines 3s linear infinite;
@@ -171,7 +171,59 @@
 
 .cyber-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(255, 0, 64, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 64, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+/* Плавные анимации при наведении */
+.smooth-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3);
+}
+
+.text-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.text-hover:hover {
+  color: var(--neon-red);
+  text-shadow: 0 0 15px var(--neon-red);
+  transform: scale(1.02);
+}
+
+.button-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 64, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.button-hover:hover::before {
+  left: 100%;
+}
+
+.button-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 64, 0.4);
 }

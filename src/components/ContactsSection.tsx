@@ -16,28 +16,28 @@ const ContactsSection = () => {
       platform: "Telegram",
       handle: "@ghost_protocol",
       icon: "MessageCircle",
-      color: "neon-cyan",
+      color: "neon-crimson",
     },
     {
       id: 2,
       platform: "ProtonMail",
       handle: "ghost@protonmail.com",
       icon: "Mail",
-      color: "neon-green",
+      color: "neon-red",
     },
     {
       id: 3,
       platform: "Signal",
-      handle: "+1-555-GHOST",
+      handle: "+7-999-GHOST",
       icon: "Phone",
-      color: "neon-purple",
+      color: "neon-burgundy",
     },
     {
       id: 4,
       platform: "Discord",
       handle: "GhostProtocol#0001",
       icon: "MessageSquare",
-      color: "neon-cyan",
+      color: "neon-crimson",
     },
   ]);
 
@@ -54,10 +54,10 @@ const ContactsSection = () => {
   const addContact = () => {
     const newContact: Contact = {
       id: Math.max(...contacts.map((c) => c.id)) + 1,
-      platform: "New Platform",
+      platform: "Новая платформа",
       handle: "@newhandle",
       icon: "MessageCircle",
-      color: "neon-cyan",
+      color: "neon-crimson",
     };
     setContacts([...contacts, newContact]);
     setEditingContact(newContact.id);
@@ -68,22 +68,22 @@ const ContactsSection = () => {
   };
 
   return (
-    <section id="contacts" className="py-16 px-6">
+    <section className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-orbitron font-bold neon-green mb-2">
+          <h2 className="text-3xl font-orbitron font-bold neon-red mb-2 text-hover">
             <Icon name="Wifi" className="inline mr-2" size={32} />
-            CONNECT.LOG
+            Связь
           </h2>
-          <div className="w-16 h-px bg-neon-green mx-auto"></div>
+          <div className="w-16 h-px bg-neon-red mx-auto"></div>
         </div>
 
-        <div className="bg-cyber-gray/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-8 scan-line">
+        <div className="bg-cyber-gray/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-8 scan-line smooth-hover">
           <div className="grid md:grid-cols-2 gap-6">
             {contacts.map((contact) => (
               <div
                 key={contact.id}
-                className="flex items-center space-x-4 p-4 bg-cyber-dark/50 rounded-lg hover:bg-cyber-dark/70 transition-all duration-300"
+                className="flex items-center space-x-4 p-4 bg-dark-red/50 rounded-lg smooth-hover"
               >
                 <div
                   className={`p-3 rounded-lg bg-gradient-to-br from-${contact.color}/20 to-${contact.color}/10`}
@@ -120,7 +120,7 @@ const ContactsSection = () => {
                     </div>
                   ) : (
                     <div
-                      className="space-y-1 cursor-pointer hover:opacity-80"
+                      className="space-y-1 cursor-pointer text-hover"
                       onClick={() => setEditingContact(contact.id)}
                     >
                       <div className="text-sm font-code text-gray-400">
@@ -138,7 +138,7 @@ const ContactsSection = () => {
                 <button
                   onClick={() => removeContact(contact.id)}
                   className="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-all duration-200"
-                  title="Remove contact"
+                  title="Удалить контакт"
                 >
                   <Icon name="X" size={16} />
                 </button>
@@ -149,17 +149,17 @@ const ContactsSection = () => {
           <div className="mt-6 text-center">
             <button
               onClick={addContact}
-              className="inline-flex items-center space-x-2 px-4 py-2 bg-neon-green/10 border border-neon-green/30 rounded-lg text-neon-green hover:bg-neon-green/20 transition-all duration-200 font-code"
+              className="inline-flex items-center space-x-2 px-4 py-2 bg-neon-red/10 border border-neon-red/30 rounded-lg text-neon-red font-code button-hover"
             >
               <Icon name="Plus" size={16} />
-              <span>ADD_CONTACT.EXE</span>
+              <span>ДОБАВИТЬ КОНТАКТ</span>
             </button>
           </div>
 
           <div className="mt-8 text-center">
             <div className="inline-flex items-center space-x-2 text-sm font-code text-gray-500">
               <Icon name="Shield" size={16} />
-              <span>All communications encrypted • Response time: 24h</span>
+              <span>Все коммуникации зашифрованы • Время ответа: 24ч</span>
             </div>
           </div>
         </div>

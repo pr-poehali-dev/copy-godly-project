@@ -1,17 +1,15 @@
 import { useState } from "react";
 
-const CyberHeader = () => {
+interface CyberHeaderProps {
+  activeSection: string;
+  onSectionChange: (section: string) => void;
+}
+
+const CyberHeader = ({ activeSection, onSectionChange }: CyberHeaderProps) => {
   const [title, setTitle] = useState("GHOST_PROTOCOL");
-  const [subtitle, setSubtitle] = useState("OSINT SPECIALIST");
+  const [subtitle, setSubtitle] = useState("СПЕЦИАЛИСТ OSINT");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingSubtitle, setIsEditingSubtitle] = useState(false);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <header className="relative py-8 px-6">
@@ -25,12 +23,12 @@ const CyberHeader = () => {
             onChange={(e) => setTitle(e.target.value)}
             onBlur={() => setIsEditingTitle(false)}
             onKeyDown={(e) => e.key === "Enter" && setIsEditingTitle(false)}
-            className="bg-transparent text-4xl md:text-6xl font-orbitron font-black neon-green border-0 outline-0 text-center w-full"
+            className="bg-transparent text-4xl md:text-6xl font-orbitron font-black neon-red border-0 outline-0 text-center w-full"
             autoFocus
           />
         ) : (
           <h1
-            className="text-4xl md:text-6xl font-orbitron font-black neon-green cursor-pointer hover:glitch transition-all duration-300"
+            className="text-4xl md:text-6xl font-orbitron font-black neon-red cursor-pointer text-hover"
             onClick={() => setIsEditingTitle(true)}
           >
             {title}
@@ -44,39 +42,50 @@ const CyberHeader = () => {
             onChange={(e) => setSubtitle(e.target.value)}
             onBlur={() => setIsEditingSubtitle(false)}
             onKeyDown={(e) => e.key === "Enter" && setIsEditingSubtitle(false)}
-            className="bg-transparent text-lg md:text-xl font-code neon-cyan border-0 outline-0 text-center w-full mt-2"
+            className="bg-transparent text-lg md:text-xl font-code neon-crimson border-0 outline-0 text-center w-full mt-2"
             autoFocus
           />
         ) : (
           <p
-            className="text-lg md:text-xl font-code neon-cyan mt-2 cursor-pointer hover:opacity-80 transition-all duration-300"
+            className="text-lg md:text-xl font-code neon-crimson mt-2 cursor-pointer text-hover"
             onClick={() => setIsEditingSubtitle(true)}
           >
             {subtitle}
           </p>
         )}
 
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-neon-green to-transparent mx-auto mt-4 mb-6"></div>
+        <div className="w-32 h-px bg-gradient-to-r from-transparent via-neon-red to-transparent mx-auto mt-4 mb-6"></div>
 
-        {/* Navigation Menu */}
         <nav className="flex justify-center space-x-6 mt-8">
           <button
-            onClick={() => scrollToSection("bio")}
-            className="px-6 py-2 bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border border-neon-cyan/50 rounded font-code text-neon-cyan hover:bg-neon-cyan/10 hover:border-neon-cyan transition-all duration-300"
+            onClick={() => onSectionChange("bio")}
+            className={`px-6 py-2 border rounded font-code button-hover ${
+              activeSection === "bio"
+                ? "bg-neon-red/20 border-neon-red text-neon-red"
+                : "bg-gradient-to-r from-neon-crimson/20 to-neon-red/20 border-neon-crimson/50 text-neon-crimson"
+            }`}
           >
-            BIO.EXE
+            Био
           </button>
           <button
-            onClick={() => scrollToSection("shop")}
-            className="px-6 py-2 bg-gradient-to-r from-neon-purple/20 to-neon-pink/20 border border-neon-purple/50 rounded font-code text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple transition-all duration-300"
+            onClick={() => onSectionChange("shop")}
+            className={`px-6 py-2 border rounded font-code button-hover ${
+              activeSection === "shop"
+                ? "bg-neon-burgundy/20 border-neon-burgundy text-neon-burgundy"
+                : "bg-gradient-to-r from-neon-burgundy/20 to-neon-red/20 border-neon-burgundy/50 text-neon-burgundy"
+            }`}
           >
-            SHOP.DB
+            Услуги
           </button>
           <button
-            onClick={() => scrollToSection("contacts")}
-            className="px-6 py-2 bg-gradient-to-r from-neon-green/20 to-neon-lime/20 border border-neon-green/50 rounded font-code text-neon-green hover:bg-neon-green/10 hover:border-neon-green transition-all duration-300"
+            onClick={() => onSectionChange("contacts")}
+            className={`px-6 py-2 border rounded font-code button-hover ${
+              activeSection === "contacts"
+                ? "bg-neon-red/20 border-neon-red text-neon-red"
+                : "bg-gradient-to-r from-neon-red/20 to-neon-crimson/20 border-neon-red/50 text-neon-red"
+            }`}
           >
-            CONNECT.LOG
+            Связь
           </button>
         </nav>
       </div>

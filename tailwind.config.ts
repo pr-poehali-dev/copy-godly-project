@@ -36,12 +36,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "neon-green": "#00ff41",
-        "neon-cyan": "#00ffff",
-        "neon-purple": "#ff00ff",
-        "cyber-dark": "#0a0a0a",
-        "cyber-darker": "#050505",
-        "cyber-gray": "#1a1a1a",
+        "neon-red": "#ff0040",
+        "neon-crimson": "#dc143c",
+        "neon-burgundy": "#800020",
+        "dark-red": "#1a0005",
+        "darker-red": "#0f0003",
+        "cyber-gray": "#2a0a0a",
       },
       fontFamily: {
         orbitron: ["Orbitron", "monospace"],
@@ -63,10 +63,10 @@ export default {
         },
         "neon-pulse": {
           "0%, 100%": {
-            boxShadow: "0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 15px #00ff41",
+            boxShadow: "0 0 5px #ff0040, 0 0 10px #ff0040, 0 0 15px #ff0040",
           },
           "50%": {
-            boxShadow: "0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41",
+            boxShadow: "0 0 10px #ff0040, 0 0 20px #ff0040, 0 0 30px #ff0040",
           },
         },
         "matrix-rain": {
