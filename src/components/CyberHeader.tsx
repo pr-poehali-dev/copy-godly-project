@@ -6,6 +6,13 @@ const CyberHeader = () => {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingSubtitle, setIsEditingSubtitle] = useState(false);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="relative py-8 px-6">
       <div className="cyber-grid absolute inset-0 opacity-20"></div>
@@ -49,7 +56,29 @@ const CyberHeader = () => {
           </p>
         )}
 
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-neon-green to-transparent mx-auto mt-4"></div>
+        <div className="w-32 h-px bg-gradient-to-r from-transparent via-neon-green to-transparent mx-auto mt-4 mb-6"></div>
+
+        {/* Navigation Menu */}
+        <nav className="flex justify-center space-x-6 mt-8">
+          <button
+            onClick={() => scrollToSection("bio")}
+            className="px-6 py-2 bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border border-neon-cyan/50 rounded font-code text-neon-cyan hover:bg-neon-cyan/10 hover:border-neon-cyan transition-all duration-300"
+          >
+            BIO.EXE
+          </button>
+          <button
+            onClick={() => scrollToSection("shop")}
+            className="px-6 py-2 bg-gradient-to-r from-neon-purple/20 to-neon-pink/20 border border-neon-purple/50 rounded font-code text-neon-purple hover:bg-neon-purple/10 hover:border-neon-purple transition-all duration-300"
+          >
+            SHOP.DB
+          </button>
+          <button
+            onClick={() => scrollToSection("contacts")}
+            className="px-6 py-2 bg-gradient-to-r from-neon-green/20 to-neon-lime/20 border border-neon-green/50 rounded font-code text-neon-green hover:bg-neon-green/10 hover:border-neon-green transition-all duration-300"
+          >
+            CONNECT.LOG
+          </button>
+        </nav>
       </div>
     </header>
   );

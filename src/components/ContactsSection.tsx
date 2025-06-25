@@ -51,8 +51,24 @@ const ContactsSection = () => {
     );
   };
 
+  const addContact = () => {
+    const newContact: Contact = {
+      id: Math.max(...contacts.map((c) => c.id)) + 1,
+      platform: "New Platform",
+      handle: "@newhandle",
+      icon: "MessageCircle",
+      color: "neon-cyan",
+    };
+    setContacts([...contacts, newContact]);
+    setEditingContact(newContact.id);
+  };
+
+  const removeContact = (id: number) => {
+    setContacts(contacts.filter((contact) => contact.id !== id));
+  };
+
   return (
-    <section className="py-16 px-6">
+    <section id="contacts" className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-orbitron font-bold neon-green mb-2">
@@ -118,8 +134,26 @@ const ContactsSection = () => {
                     </div>
                   )}
                 </div>
+
+                <button
+                  onClick={() => removeContact(contact.id)}
+                  className="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-all duration-200"
+                  title="Remove contact"
+                >
+                  <Icon name="X" size={16} />
+                </button>
               </div>
             ))}
+          </div>
+
+          <div className="mt-6 text-center">
+            <button
+              onClick={addContact}
+              className="inline-flex items-center space-x-2 px-4 py-2 bg-neon-green/10 border border-neon-green/30 rounded-lg text-neon-green hover:bg-neon-green/20 transition-all duration-200 font-code"
+            >
+              <Icon name="Plus" size={16} />
+              <span>ADD_CONTACT.EXE</span>
+            </button>
           </div>
 
           <div className="mt-8 text-center">

@@ -54,7 +54,7 @@ const ShopSection = () => {
   };
 
   return (
-    <section className="py-16 px-6">
+    <section id="shop" className="py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-orbitron font-bold neon-purple mb-2">

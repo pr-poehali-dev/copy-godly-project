@@ -18,7 +18,7 @@ const BioSection = () => {
   const [editingDescription, setEditingDescription] = useState(false);
 
   return (
-    <section className="py-16 px-6">
+    <section id="bio" className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-orbitron font-bold neon-cyan mb-2">
@@ -66,6 +66,9 @@ const BioSection = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 onBlur={() => setEditingDescription(false)}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && setEditingDescription(false)
+                }
                 className="bg-transparent text-gray-300 font-code leading-relaxed border-0 outline-0 w-full h-32 resize-none"
                 autoFocus
               />
@@ -84,13 +87,15 @@ const BioSection = () => {
               </h4>
               <div className="grid grid-cols-1 gap-2">
                 {skills.map((skill, index) => (
-                  <div
+                  <SkillItem
                     key={index}
-                    className="flex items-center space-x-2 text-sm font-code"
-                  >
-                    <div className="w-2 h-2 bg-neon-green rounded-full neon-pulse"></div>
-                    <span className="text-gray-300">{skill}</span>
-                  </div>
+                    skill={skill}
+                    onUpdate={(newSkill) => {
+                      const newSkills = [...skills];
+                      newSkills[index] = newSkill;
+                      setSkills(newSkills);
+                    }}
+                  />
                 ))}
               </div>
             </div>
@@ -98,6 +103,46 @@ const BioSection = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const SkillItem = ({
+  skill,
+  onUpdate,
+}: {
+  skill: string;
+  onUpdate: (skill: string) => void;
+}) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(skill);
+
+  const handleSave = () => {
+    onUpdate(value);
+    setIsEditing(false);
+  };
+
+  return (
+    <div className="flex items-center space-x-2 text-sm font-code">
+      <div className="w-2 h-2 bg-neon-green rounded-full neon-pulse"></div>
+      {isEditing ? (
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={(e) => e.key === "Enter" && handleSave()}
+          className="bg-transparent text-gray-300 border-0 outline-0 flex-1"
+          autoFocus
+        />
+      ) : (
+        <span
+          className="text-gray-300 cursor-pointer hover:opacity-80"
+          onClick={() => setIsEditing(true)}
+        >
+          {skill}
+        </span>
+      )}
+    </div>
   );
 };
 
